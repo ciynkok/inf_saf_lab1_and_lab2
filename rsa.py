@@ -45,7 +45,18 @@ def multiplicative_inverse(e, phi):
     >>> multiplicative_inverse(7, 40)
     23
     """
-    pass
+    m = []
+    x, y = 0, 1
+    a = phi
+
+    while phi % e != 0:
+        m.append(phi // e)
+        phi, e = e, phi % e
+
+    for i in m[len(m) - 1::-1]:
+        x, y = y, x - y * i
+
+    return y % a
 
 
 def generate_keypair(p, q):
